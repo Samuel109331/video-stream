@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    {% for i in channels %} 
+            <li><a href="video/{{ i[1] }}">Active channel (i[0])</a><button onclick="deletestream()">delete</button></li>
+    {% endfor %}
+</ul>
+<script>
+    function deletestream(){
+// Create a new XMLHttpRequest object
+var xhr = new XMLHttpRequest();
+
+// Configure the request
+xhr.open('GET', '/deleteallchannels', true); // Replace with the URL you want to request data from
+
+// Set up event handlers for the response
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      // Request successful, handle the response
+      var responseData = JSON.parse(xhr.responseText);
+      console.log(responseData);
+      window.location.href="/";
+    } else {
+      // Request failed, handle the error
+      console.error('Request failed with status:', xhr.status);
+    }
+  }
+};
+
+// Send the request
+xhr.send();
+
+        
+    }
+</script>
+</body>
+</html>

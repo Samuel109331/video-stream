@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple video stream</title>
+</head>
+<body>
+    <div>
+        <button><a href="/hostvideo">Stream video</a></button><br><br>
+        <ul>
+            <button onclick="deletevid()">Delete live videos</button>
+       {% for i in channels %} 
+            <li><a href="/video/{{ i[1] }}">Active channel</a></li>
+        {% endfor %}
+    </ul>
+    </div>
+    <script>
+        function deletevid(){
+            var username = prompt("Enter user name!")
+            var password = prompt("Enter password")
+            if (username == "samuel" && password == "sam@12345678") {
+                window.location.href="/admin/delete";
+            }
+            else {
+                window.alert("You are not admin only admin can delete!")
+            }
+        }
+    </script>
+</body>
+</html>
