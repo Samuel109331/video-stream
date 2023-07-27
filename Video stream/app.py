@@ -42,6 +42,9 @@ def gen_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+@app.errorhandler(500)
+def funcerr(err):
+    return "Error happened ";
             
 @app.route("/")
 def index():
@@ -91,4 +94,4 @@ def adminctrl():
     return render_template("admin.html",channels = channels)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
